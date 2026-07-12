@@ -4,11 +4,13 @@ A small falling-block puzzle game built with plain JavaScript, HTML Canvas, and 
 
 **Live demo:** [mrcodecx.github.io/blocks_game_js](https://mrcodecx.github.io/blocks_game_js/)
 
+![Blocks Game gameplay](docs/screenshots/gameplay.png)
+
+## About
+
 This was my first JavaScript project. It uses Canvas for rendering, keyboard events for player input, and plain JavaScript classes to handle the game state, pieces, movement, rotation, and row clearing.
 
 The project does not use a framework, bundler, or package manager. It is intentionally simple and runs directly in the browser.
-
-![Blocks Game gameplay](docs/screenshots/gameplay.png)
 
 ## Features
 
