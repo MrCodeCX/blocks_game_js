@@ -1,0 +1,472 @@
+/* styles.css */
+
+/* ---------- Reset & base ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0d0f14;
+    --surface: #171a21;
+    --surface-alt: #1f232c;
+    --border: #2a2f3a;
+    --text: #eef0f4;
+    --text-muted: #9aa1ae;
+    --accent: #5ee7ff;
+    --accent-strong: #33c9e8;
+    --accent-soft: rgba(94, 231, 255, 0.12);
+    --radius: 12px;
+    --gs: 1;
+    --panel-y: clamp(28px, 4dvh, 58px);
+    --panel-x: clamp(34px, 5vw, 88px);
+    --stage-y: clamp(14px, 3dvh, 36px);
+}
+
+@media (min-width: 1800px) and (min-height: 900px) {
+    :root { --gs: 1.28; }
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Inter', 'Arial', sans-serif;
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(circle at 12% 8%, rgba(94, 231, 255, 0.12), transparent 42%),
+        radial-gradient(circle at 88% 22%, rgba(129, 140, 248, 0.12), transparent 48%),
+        radial-gradient(circle at 50% 100%, rgba(255, 105, 180, 0.08), transparent 55%),
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: auto, auto, auto, 44px 44px, 44px 44px;
+    color: var(--text);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    overflow: hidden;
+}
+
+.arcade {
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* ---------- Header ---------- */
+.header {
+    flex: 0 0 auto;
+    padding: clamp(10px, 2dvh, 18px) 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 0 var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.logo {
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    text-decoration: none;
+    text-shadow: 0 0 18px rgba(94, 231, 255, 0.5);
+}
+
+.brand-tag {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+/* ---------- Stage: centra el panel en la pantalla disponible ---------- */
+.stage {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    padding: var(--stage-y) 32px;
+    max-width: 1700px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ---------- Panel: tarjeta "consola" que agrupa todo ---------- */
+.panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(285px, 390px) auto;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(34px, 5vw, 82px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: var(--panel-y) var(--panel-x);
+    max-width: min(1420px, calc(100vw - 64px));
+    max-height: calc(100dvh - 86px);
+    box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(94, 231, 255, 0.04);
+    overflow: hidden;
+}
+
+.panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff4500, #00ff00, #1e90ff, #ffd700, #ff69b4);
+}
+
+.intro-col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 2dvh, 22px);
+    max-width: 390px;
+}
+
+.brand-title {
+    font-size: clamp(28px, 2.6vw + 0.7dvh, 50px);
+    letter-spacing: 2px;
+    text-shadow: 0 0 26px rgba(94, 231, 255, 0.3);
+}
+
+.brand-title span {
+    color: var(--accent);
+}
+
+.tagline {
+    color: var(--text-muted);
+    font-size: clamp(14px, 0.9vw + 0.45dvh, 17px);
+}
+
+.hero-blocks {
+    display: flex;
+    gap: 8px;
+}
+
+.hero-blocks span {
+    width: clamp(20px, 1.4vw, 26px);
+    height: clamp(20px, 1.4vw, 26px);
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+}
+
+.hero-blocks span:nth-child(1) { background: #ff4500; }
+.hero-blocks span:nth-child(2) { background: #00ff00; }
+.hero-blocks span:nth-child(3) { background: #1e90ff; }
+.hero-blocks span:nth-child(4) { background: #ffd700; }
+.hero-blocks span:nth-child(5) { background: #ff69b4; }
+
+/* ---------- Instrucciones (mini tarjeta) ---------- */
+.instructions-card {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: clamp(16px, 2.4dvh, 26px) clamp(18px, 1.8vw, 30px);
+}
+
+.instructions-card h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: clamp(10px, 1.7dvh, 16px);
+}
+
+.instructions-list {
+    list-style: none;
+    display: grid;
+    gap: clamp(9px, 1.6dvh, 16px);
+}
+
+.instructions-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.keys {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+kbd {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(10px, 0.7vw, 12px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-bottom-width: 3px;
+    border-radius: 6px;
+    padding: 5px 8px;
+    color: var(--accent);
+}
+
+.instructions-list p {
+    color: var(--text-muted);
+    font-size: clamp(13.5px, 0.9vw, 15.5px);
+}
+
+/* ---------- Jugar ---------- */
+.game-col {
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+.game-layout {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: clamp(18px, calc(20px * var(--gs)), 28px);
+}
+
+.game-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: calc(12px * var(--gs));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 1px rgba(94, 231, 255, 0.05), 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+}
+
+#gameCanvas {
+    box-sizing: content-box;
+    background-color: #000;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    height: calc(400px * var(--gs));
+    width: calc(300px * var(--gs));
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.score-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(16px, calc(22px * var(--gs)), 28px);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: clamp(18px, calc(22px * var(--gs)), 28px);
+    width: clamp(220px, calc(190px * var(--gs)), 244px);
+    min-width: 0;
+    box-shadow: 0 0 0 1px rgba(94, 231, 255, 0.05), 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+}
+
+.score-bar {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, calc(17px * var(--gs)), 22px);
+    align-items: center;
+    width: 100%;
+}
+
+.score-item {
+    text-align: center;
+    width: 100%;
+}
+
+.score-item h2 {
+    font-size: clamp(9.5px, calc(11px * var(--gs)), 13px);
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.score-item p {
+    font-family: 'Press Start 2P', cursive;
+    font-size: calc(18px * var(--gs));
+    color: var(--accent);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.controls button {
+    padding: clamp(9px, calc(10px * var(--gs)), 13px) 0;
+    font-size: clamp(12px, calc(13px * var(--gs)), 15px);
+    font-weight: 600;
+    line-height: 1.15;
+    background: var(--surface-alt);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.controls button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+#startButton {
+    background: var(--accent);
+    color: #05171b;
+    border: none;
+    font-weight: 700;
+}
+
+#startButton:hover {
+    background: var(--accent-strong);
+    color: #05171b;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1400px) and (min-width: 801px) {
+    :root {
+        --gs: 1;
+        --panel-x: clamp(30px, 3.8vw, 54px);
+    }
+    .panel {
+        gap: clamp(30px, 4vw, 54px);
+    }
+    .intro-col {
+        max-width: 360px;
+    }
+}
+
+@media (max-width: 1100px) and (min-width: 801px) {
+    :root {
+        --panel-x: clamp(20px, 2.8vw, 32px);
+        --stage-y: 10px;
+    }
+    .stage {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+    .panel {
+        gap: clamp(18px, 2.4vw, 28px);
+        max-width: calc(100vw - 32px);
+    }
+    .intro-col {
+        max-width: 310px;
+    }
+}
+
+/* Viewports de laptop: misma composicion que desktop, con escala y espacios controlados. */
+@media (max-height: 760px) {
+    :root {
+        --gs: 1;
+        --panel-y: 28px;
+        --panel-x: clamp(34px, 4vw, 62px);
+        --stage-y: 12px;
+    }
+    .header {
+        padding: 10px 32px;
+    }
+    .panel {
+        gap: clamp(34px, 4.5vw, 62px);
+    }
+    .game-layout {
+        gap: clamp(18px, calc(20px * var(--gs)), 24px);
+    }
+    .score-controls {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: clamp(14px, calc(18px * var(--gs)), 22px);
+        padding: clamp(18px, calc(20px * var(--gs)), 22px);
+        width: clamp(212px, 14vw, 228px);
+    }
+    .score-bar {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(12px, calc(15px * var(--gs)), 18px);
+    }
+    .score-item h2 {
+        font-size: clamp(10px, calc(10.5px * var(--gs)), 12px);
+        letter-spacing: 1px;
+        margin-bottom: 7px;
+    }
+    .score-item p {
+        font-size: clamp(16px, calc(17px * var(--gs)), 19px);
+    }
+    .controls {
+        flex: 0 0 auto;
+        gap: 9px;
+    }
+    .controls button {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    .intro-col {
+        gap: 14px;
+        max-width: 360px;
+    }
+    .brand-title {
+        font-size: clamp(27px, 3.2vw, 40px);
+    }
+    .hero-blocks span {
+        width: 20px;
+        height: 20px;
+    }
+    .instructions-list li {
+        gap: 10px;
+    }
+    kbd {
+        padding: 4px 7px;
+    }
+}
+
+/* Pantallas angostas (móvil): ya no cabe todo en una vista, se permite scroll */
+@media (max-width: 800px) {
+    html, body {
+        height: auto;
+    }
+    body {
+        min-height: 100%;
+        overflow: auto;
+    }
+    .header {
+        padding: 14px 20px;
+    }
+    .stage {
+        padding: 24px 16px;
+    }
+    .panel {
+        display: flex;
+        flex-direction: column;
+        max-width: none;
+        max-height: none;
+        padding: 32px 24px;
+        overflow: visible;
+        gap: 32px;
+    }
+    .intro-col {
+        max-width: 320px;
+        align-items: center;
+        text-align: center;
+    }
+    .game-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    .score-controls {
+        width: 100%;
+        max-width: 300px;
+    }
+}
