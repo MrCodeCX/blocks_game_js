@@ -6,6 +6,8 @@ This was my first JavaScript project. It uses Canvas for rendering, keyboard eve
 
 The project does not use a framework, bundler, or package manager. It is intentionally simple and runs directly in the browser.
 
+[Live Demo](https://mrcodecx.github.io/blocks_game_js/)
+
 ![Blocks Game gameplay](docs/screenshots/gameplay.png)
 
 ## Features
