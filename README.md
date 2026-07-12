@@ -1,20 +1,16 @@
 # Blocks Game
 
-A small legacy browser game built with plain JavaScript, HTML Canvas, and CSS.
+A small falling-block puzzle game built with plain JavaScript, HTML Canvas, and CSS.
 
-This project is a rescued portfolio piece: the original gameplay logic was kept intentionally close to its early version, while the presentation, folder structure, and visual polish were updated so it can stand as a clean showcase of older work.
+This was my first JavaScript project. It uses Canvas for rendering, keyboard events for player input, and plain JavaScript classes to handle the game state, pieces, movement, rotation, and row clearing.
+
+The project does not use a framework, bundler, or package manager. It is intentionally simple and runs directly in the browser.
 
 ![Blocks Game overview](docs/screenshots/overview.png)
 
 ## Gameplay Preview
 
 ![Blocks Game gameplay](docs/screenshots/gameplay.png)
-
-## About
-
-Blocks Game is a falling-block puzzle game inspired by classic block-stacking mechanics. Pieces spawn at the top of the board, move through a grid, rotate, settle, and can clear completed rows for points.
-
-The project does not use a framework, bundler, or package manager. It is intentionally simple and runs directly in the browser.
 
 ## Features
 
