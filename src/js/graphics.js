@@ -46,7 +46,7 @@ class Grid {
         this.draw(i,j,this.data.bg_color);
     }
     drawAll() {
-        // Empieza desde 4 pues los Boxs i 0 -> 3 no se ven
+        // Start at 4 because rows 0 -> 3 are hidden
         for (let i = 4; i < this.data.grid_h; i++) {
             for (let j = 0; j < this.data.grid_w; j++) {
                 if(this.grid[i][j].id != 0) {
@@ -60,7 +60,7 @@ class Grid {
         this.ctx.fillRect(0, 0, this.data.w, this.data.h);
     }
     drawClearAll() {
-        // Empieza desde 4 pues los Boxs i 0 -> 3 no se ven
+        // Start at 4 because rows 0 -> 3 are hidden
         for (let i = 4; i < this.data.grid_h; i++) {
             for (let j = 0; j < this.data.grid_w; j++) {
                 this.draw(i,j,this.grid[i][j].color);
@@ -74,11 +74,11 @@ class Grid {
         this.ctx.font = 'bold 40px "Press Start 2P", monospace'; 
         this.ctx.textAlign = 'center'; 
         this.ctx.textBaseline = 'middle'; 
-        // Dibujar el texto "GAME OVER" en el centro
+        // Draw the "GAME OVER" text in the center
         this.ctx.fillText("GAME OVER", centerX, centerY - 20); 
-        // Agregar subtítulo "Tu Score: "
+        // Add score subtitle
         this.ctx.font = '20px "Press Start 2P", monospace';
-        this.ctx.fillText("Tu Score: " + score, centerX, centerY + 30);
+        this.ctx.fillText("Your Score: " + score, centerX, centerY + 30);
     }
 
 }

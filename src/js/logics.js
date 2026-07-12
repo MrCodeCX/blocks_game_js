@@ -2,32 +2,32 @@
 
 class Utils {
     static verify_range(num,min,max) {
-        // Verifica si un numero se encuentra en un rango (inclusivo)
+        // Checks if a number is inside an inclusive range
         if(num > max || num < min) return false;
         else return true;
     }
     static index(element,array) {
-        // Verifica si un pot se encuentra en un array y devuelve su posicion
+        // Checks if a pot is in an array and returns its position
         for (let i = 0; i < array.length; i++) {
             if(element.x == array[i].x && element.y == array[i].y) return i;
         }
         return -1;
     }
     static pop_mul(ids,array) {
-        // Metodo que elimina varios elementos de un array segun su id
+        // Method that removes multiple elements from an array by id
     }
 }
 
 class Logic {
     constructor(data_, grid_controler_) {
-        // Siempre acceder al grid a travez del grid controler, luego del reset se vuelven grids distintos
+        // Always access the grid through the grid controller; reset creates a new grid
         this.data = data_;
         this.grid_controler = grid_controler_;
     }
 
     spawn_img(id) {
-        // Spawnea una imagen aleatoria de las opciones en data, (type, rotate, color)
-        // La coloca en el grid (Boxs), y tambien retorna esta imagen
+        // Spawns a random image from the data options (type, rotation, color)
+        // Places it on the grid (Boxes), and also returns the image
         let grid = this.grid_controler.grid;
         let img_type = Math.floor(Math.random()*this.data.n_type);
         let img_rotate = Math.floor(Math.random()*this.data.n_rotate);
@@ -44,9 +44,9 @@ class Logic {
     }
 
     verify_move_img(img, dx, dy) {
-        // Funcion que se encarga de ver si una imagen (solida) puede moverse 
-        // (segun limites del mapa y no chocar con otros bloques que lo impidan)
-        // Devuelve el valor de si puede moverse o no
+        // Checks if a solid image can move
+        // according to map limits and blocking collisions
+        // Returns whether the movement is allowed
         let grid = this.grid_controler.grid;
         let move = true;
         for (let i = 0; i < 4; i++) {
@@ -71,7 +71,7 @@ class Logic {
     }
 
     move_img(img, dx, dy) {
-        // Funcion que mueve una imagen (su x, y) y tambien sus Boxs en el grid
+        // Moves an image (its x, y) and its Boxes on the grid
         let grid = this.grid_controler.grid;
         let pots = [];
         let pots_delete = [];
@@ -104,7 +104,7 @@ class Logic {
     }
 
     verify_rotate_img(img, rotate) {
-        // Funcion que verifica si una imagen puede rotar
+        // Checks if an image can rotate
         let grid = this.grid_controler.grid;
         let new_rotate = (img.rotate + rotate); 
         if(new_rotate == this.data.n_rotate) new_rotate = 0;
@@ -133,7 +133,7 @@ class Logic {
     }
 
     rotate_img(img, rotate) {
-        // Funcion que rota la imagen (su shape) y sus Boxs en la grid
+        // Rotates the image (its shape) and its Boxes on the grid
         let grid = this.grid_controler.grid;
         let new_rotate = (img.rotate + rotate); 
         if(new_rotate == this.data.n_rotate) new_rotate = 0;
@@ -185,7 +185,7 @@ class Logic {
         let grid = this.grid_controler.grid;
         let ids = new Set();
         for (let j = 0; j < this.data.grid_w; j++) {
-            // Actualizar id sans de todos los cuadrados y de las imagenes
+            // Update sand ids for all squares and images
             ids.add(grid[i][j].id);
             grid[i][j] = new Box(0,this.data.bg_color);
         }
@@ -193,7 +193,7 @@ class Logic {
     }
 
     acctually_sands(ids) {
-        // Funcion que Actualiza los sands de Boxs
+        // Updates the sand state of Boxes
         let grid = this.grid_controler.grid;
         for (let i = 0; i < this.data.grid_h; i++) {
             for (let j = 0; j < this.data.grid_w; j++) {
@@ -203,8 +203,8 @@ class Logic {
     }
 
     verify_rows() {
-        // Funcion que verifica si las rows se pueden eliminar 
-        // devuelve array de las rows que se pueden eliminar, y el score obtenido 
+        // Checks if rows can be removed
+        // Returns the removable rows and the obtained score
         let grid = this.grid_controler.grid;
         let rows_delete = [];
         let score_ = 0;

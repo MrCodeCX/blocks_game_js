@@ -1,7 +1,7 @@
 <!-- index.html -->
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/css/style.css">
-    <link rel="icon" href="assets/icons/logo.ico" type="image/x-icon">
-    <meta name="description" content="Sitio Web Blocks Game"/>
-    <meta name="keywords" content="thmrcode, project, code, programacion">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="Blocks Game website"/>
+    <meta name="keywords" content="thmrcode, project, code, programming">
     <meta name="author" content="ThMrCode">
 </head>
 <body>
@@ -20,44 +20,44 @@
     <header class="header">
         <div class="brand">
             <span class="logo arcade">BLOCKS</span>
-            <span class="brand-tag">JS puro · 2024</span>
+            <span class="brand-tag">Plain JS · 2024</span>
         </div>
     </header>
 
     <main class="stage">
         <div class="panel">
-            <!-- Presentación + Instrucciones -->
+            <!-- Intro + instructions -->
             <div class="intro-col">
                 <h1 class="brand-title arcade">BLOCK<span>S</span></h1>
                 <div class="hero-blocks" aria-hidden="true">
                     <span></span><span></span><span></span><span></span><span></span>
                 </div>
-                <p class="tagline">El clásico juego de bloques, hecho en JavaScript puro. Encaja las piezas y completa líneas.</p>
+                <p class="tagline">A classic blocks game built with plain JavaScript. Fit the pieces and clear lines.</p>
 
                 <div class="instructions-card">
-                    <h2>Instrucciones</h2>
+                    <h2>Instructions</h2>
                     <ul class="instructions-list">
                         <li>
                             <div class="keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div>
-                            <p>Mover</p>
+                            <p>Move</p>
                         </li>
                         <li>
                             <div class="keys"><kbd>Space</kbd><kbd>Q</kbd><kbd>E</kbd></div>
-                            <p>Rotar</p>
+                            <p>Rotate</p>
                         </li>
                         <li>
                             <div class="keys"><kbd>Esc</kbd></div>
-                            <p>Silenciar música</p>
+                            <p>Mute music</p>
                         </li>
                         <li>
                             <div class="keys"><kbd>★</kbd></div>
-                            <p>Completa líneas para sumar puntos</p>
+                            <p>Clear lines to score points</p>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Jugar -->
+            <!-- Game -->
             <div class="game-col">
                 <div class="game-layout">
                     <div class="game-container">
@@ -66,21 +66,21 @@
                     <div class="score-controls">
                         <div class="score-bar">
                             <div class="score-item">
-                                <h2>Puntuación</h2>
+                                <h2>Score</h2>
                                 <p id="score">0</p>
                             </div>
                             <div class="score-item">
-                                <h2>Nivel</h2>
+                                <h2>Level</h2>
                                 <p id="level">1</p>
                             </div>
                             <div class="score-item">
-                                <h2>Líneas</h2>
+                                <h2>Lines</h2>
                                 <p id="lines">0</p>
                             </div>
                         </div>
                         <div class="controls">
-                            <button id="startButton">Iniciar Juego</button>
-                            <button id="resetButton">Apagar Juego</button>
+                            <button id="startButton">Start Game</button>
+                            <button id="resetButton">Turn Off Game</button>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
         </div>
     </main>
 
-    <!-- Scripts del Juego -->
+    <!-- Game scripts -->
     <script src="src/js/data.js"></script>
     <script src="src/js/graphics.js"></script>
     <script src="src/js/logics.js"></script>

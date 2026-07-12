@@ -23,7 +23,7 @@ class Game {
         this.reset();
     }
     reset() {
-        // Reset de grid y de variables
+        // Reset grid and variables
         this.grid_controler.reset();
         this.grid_controler.clearAll();
         this.imageStop = true;
@@ -37,12 +37,12 @@ class Game {
         this.grid_controler.drawClearAll();
     }
     frameDead() {
-        // Frame Game Over
+        // Game over frame
         this.grid_controler.clearAll();
         this.grid_controler.drawDead(this.score);
     }
     move(key) {
-        // Funcion traductora de teclas a acciones (uso de logic, grid y sound)
+        // Translates keys into actions using logic, grid, and sound
         if(this.counter != 1 && this.life) {
             if(key == "KeyA") {
                 if(this.logic.verify_move_img(this.images[this.images.length-1],-1,0)) {
@@ -96,7 +96,7 @@ class Game {
         }
     }
     logic_sands() {
-            // Logica de sands
+            // Sand logic
             let verify = this.logic.verify_rows();
             this.score += verify.score;
             this.lines += verify.rows.length;
@@ -106,13 +106,13 @@ class Game {
                 let ids = this.logic.pop_row(verify.rows[i]);
                 total_ids = new Set([...total_ids,...ids])
             }
-            // Actualizar Box Sands
+            // Update Box sands
             this.logic.acctually_sands(total_ids);
-            // Quitar Imagenes Sands de Images
+            // Remove sand images from images
             this.images = this.images.filter(obj => !total_ids.has(obj.id));
     }
     logic_move() {
-        // Mover imagenes, verificar Life
+        // Move images and check life
         for (let i = 0; i < this.images.length; i++) {
             if(this.logic.verify_move_img(this.images[i],0,1)) {
                 this.logic.move_img(this.images[i],0,1);
@@ -127,19 +127,19 @@ class Game {
         }
     }
     loop() {
-        // Bucle Principal del Juego
+        // Main game loop
         if(this.life) {
-            // Generar Imagen
+            // Generate image
             if(this.imageStop || this.images.length == 0) {
-                // A veces sera 0 el length por bugs entre sands y move 
+                // Sometimes length is 0 due to bugs between sands and movement
                 this.images.push(this.logic.spawn_img(this.counter));
                 this.imageStop = false;
             }
-            // Logica de sands
+            // Sand logic
             this.logic_sands();
-            // Mover imagenes, verificar Life
+            // Move images and check life
             this.logic_move();
-            // Actualizar Frame
+            // Update frame
             this.frame();
             this.counter++; 
         } 
