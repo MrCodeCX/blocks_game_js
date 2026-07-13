@@ -17,6 +17,7 @@ The project does not use a framework, bundler, or package manager. It is intenti
 - Canvas-based rendering.
 - Keyboard-controlled block movement and rotation.
 - Row detection and score updates.
+- Start, pause, end, and music controls.
 - Lightweight arcade-style interface.
 - No build step or external runtime required.
 
@@ -28,6 +29,7 @@ The project does not use a framework, bundler, or package manager. It is intenti
 | `Space` | Rotate |
 | `Q` / `E` | Rotate left / right |
 | `Esc` | Toggle music |
+| UI buttons | Start, pause, end, or toggle music |
 
 ## Running Locally
 

@@ -2,7 +2,9 @@
 
 const ctx = document.getElementById('gameCanvas').getContext('2d');
 const startButton = document.getElementById('startButton');
-const resetButton = document.getElementById('resetButton');
+const pauseButton = document.getElementById('pauseButton');
+const endButton = document.getElementById('endButton');
+const musicButton = document.getElementById('musicButton');
 const score = document.getElementById("score");
 const lines = document.getElementById("lines");
 const level = document.getElementById("level");
@@ -71,27 +73,20 @@ class Game {
             else if(key == "Space") {
                 if(this.logic.verify_rotate_img(this.images[this.images.length-1],1)) {
                     this.logic.rotate_img(this.images[this.images.length-1],1);
+                    this.frame();
                 }
             }
             else if(key == "KeyE") {
                 if(this.logic.verify_rotate_img(this.images[this.images.length-1],1)) {
                     this.logic.rotate_img(this.images[this.images.length-1],1);
+                    this.frame();
                 }
             }
             else if(key == "KeyQ") {
                 if(this.logic.verify_rotate_img(this.images[this.images.length-1],-1)) {
                     this.logic.rotate_img(this.images[this.images.length-1],-1);
+                    this.frame();
                 }
-            }
-            else if(key == "Escape") {
-                // Button Music
-                if(sound.paused) {
-                    sound.play();
-                }
-                else {
-                    sound.pause();
-                    sound.currentTime = 0; 
-                } 
             }
         }
     }
@@ -150,6 +145,9 @@ class Game {
 const speed = 200;
 let loop;
 let game;
+let paused = false;
+let running = false;
+let musicEnabled = false;
 
 // Start Variables
 function start() {
@@ -158,27 +156,109 @@ function start() {
 }
 start();
 
-// Event Listeners
-document.addEventListener("keydown", (e)=>{
-    game.move(e.code);
-});
-startButton.addEventListener('click', () => {
-    game.reset();
-    sound.play();
+function updateStats() {
+    score.textContent = game.score;
+    lines.textContent = game.lines;
+    level.textContent = 1;
+}
+
+function stopLoop() {
+    clearInterval(loop);
+    loop = null;
+}
+
+function runLoop() {
+    stopLoop();
     loop = setInterval(() => {
-        score.textContent = game.score;
-        lines.textContent = game.lines;
-        level.textContent = 1;
+        updateStats();
         if(game.life) game.loop();
         else {
             game.frameDead(game.score);
-            clearInterval(loop);
+            sound.pause();
+            stopLoop();
+            running = false;
+            updateControls();
         }
     }, speed);
-});
-resetButton.addEventListener('click', () => {
-    clearInterval(loop);
+}
+
+function updateControls() {
+    startButton.disabled = running;
+    pauseButton.textContent = "Pause Game";
+    pauseButton.disabled = !running;
+    endButton.disabled = !running;
+    musicButton.textContent = musicEnabled ? "Music On" : "Music Off";
+}
+
+function setMusic(enabled) {
+    musicEnabled = enabled;
+    if(musicEnabled && running && !paused) sound.play();
+    else {
+        sound.pause();
+        if(!musicEnabled) sound.currentTime = 0;
+    }
+    updateControls();
+}
+
+function endGame() {
+    stopLoop();
+    running = false;
+    paused = false;
     sound.pause();
     sound.currentTime = 0;
     game.reset();
+    updateStats();
+    updateControls();
+}
+
+updateControls();
+updateStats();
+
+// Event Listeners
+document.addEventListener("keydown", (e)=>{
+    if(["Space", "KeyW", "KeyA", "KeyS", "KeyD", "KeyQ", "KeyE"].includes(e.code)) {
+        e.preventDefault();
+    }
+    if(e.code == "Escape") {
+        setMusic(!musicEnabled);
+        return;
+    }
+    if((paused || !running)) return;
+    game.move(e.code);
+});
+startButton.addEventListener('click', (e) => {
+    e.currentTarget.blur();
+    if(running) return;
+    game.reset();
+    updateStats();
+    running = true;
+    paused = false;
+    pauseButton.textContent = "Pause Game";
+    if(musicEnabled) sound.play();
+    runLoop();
+    updateControls();
+});
+pauseButton.addEventListener('click', (e) => {
+    e.currentTarget.blur();
+    if(!running || !game.life) return;
+    if(paused) {
+        paused = false;
+        pauseButton.textContent = "Pause Game";
+        if(musicEnabled) sound.play();
+        runLoop();
+    }
+    else {
+        paused = true;
+        pauseButton.textContent = "Resume Game";
+        sound.pause();
+        stopLoop();
+    }
+});
+endButton.addEventListener('click', (e) => {
+    e.currentTarget.blur();
+    endGame();
+});
+musicButton.addEventListener('click', (e) => {
+    e.currentTarget.blur();
+    setMusic(!musicEnabled);
 });
